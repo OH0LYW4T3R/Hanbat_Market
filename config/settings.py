@@ -39,8 +39,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #
+    'django.contrib.sites',
+    #
     'HanbatMarket',
+    #
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
+    #
 ]
+
+#
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+#
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,10 +82,23 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #
+                'django.template.context_processors.request',
+                #
             ],
         },
     },
 ]
+
+#
+SITE_ID = 2
+# admin page에서 소셜 앱의 callback주소 번호랑 맞춰주어야 함
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/hanket/'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/hanket/'
+ACCOUNT_LOGOUT_ON_GET = True 
+#
 
 WSGI_APPLICATION = 'config.wsgi.application'
 

@@ -56,3 +56,4 @@ def delete(request, pk):
     post = get_object_or_404(Board, id=pk)
     post.delete()
     return redirect('hanbat_market:index')
+
